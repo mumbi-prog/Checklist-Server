@@ -1,18 +1,32 @@
 class ChecklistsController < ApplicationController
     skip_before_action :verify_authenticity_token
-    
+
     def index
         checklists = Checklist.all
         render json: checklists, include: :checklist_items
     end
 
     def show
-        checklist = Checklist.find_by(date: params[:date])
-        if checklist
-          render json: checklist.as_json(include: { checklist_items: { include: { item: { include: :category } } } })
-        else
-          render json: { error: 'Checklist not found' }, status: :not_found
-        end
+        checklist = Checklist.find_by(date: params[:id])
+            if checklist
+            categories = checklist.checklist_items.includes(item: :category).group_by { |ci| ci.item.category }
+                
+            response = {
+                id: checklist.id, date: checklist.date, categories: categories.map do |category, checklist_items|
+                {
+                    id: category.id, name: category.name, items: checklist_items.map do |ci|
+                    {
+                        id: ci.item.id, name: ci.item.name, status: ci.status, remark: ci.remark
+                    }
+                    end
+                }
+                end
+            }
+        
+            render json: response
+                else
+            render json: { error: 'Checklist not found' }, status: :404
+            end
     end
 
     def create
