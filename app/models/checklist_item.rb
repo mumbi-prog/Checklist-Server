@@ -1,5 +1,5 @@
 class ChecklistItem < ApplicationRecord
-  belongs_to :Item
+  belongs_to :item
   belongs_to :checklist
 
   validates :status, presence: true, inclusion: { in: %w[OK NOT_OK] }

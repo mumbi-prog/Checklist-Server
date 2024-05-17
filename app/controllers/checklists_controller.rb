@@ -1,4 +1,6 @@
 class ChecklistsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+    
     def index
         checklists = Checklist.all
         render json: checklists, include: :checklist_items
