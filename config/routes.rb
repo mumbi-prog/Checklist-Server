@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :checklist_items
-  resources :checklists, only [:index, :show, :create]
-  resources :items, only [:index]
-  resources :categories, only [:index]
+  resources :checklists, only: [:index, :show, :create]
+  resources :items, only: [:index]
+  resources :categories, only: [:index]
   get 'checklists/:date', to: 'checklists#show', as: 'checklist_by_date'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
