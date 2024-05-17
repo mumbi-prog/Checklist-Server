@@ -5,8 +5,12 @@ class ChecklistsController < ApplicationController
     end
 
     def show
-        checklist = Checklist.find(params[:id])
-        render json: checklist, include: :checklist_items
+        checklist = Checklist.find_by(date: params[:date])
+        if checklist
+          render json: checklist
+        else
+          render json: { error: 'Checklist not found' }, status: :not_found
+        end
     end
 
     def create
