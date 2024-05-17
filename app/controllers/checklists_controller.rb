@@ -25,7 +25,7 @@ class ChecklistsController < ApplicationController
         
             render json: response
                 else
-            render json: { error: 'Checklist not found' }, status: :404
+            render json: { error: 'Checklist not found' }, status: :not_found
             end
     end
 
