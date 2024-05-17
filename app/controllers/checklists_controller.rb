@@ -7,7 +7,7 @@ class ChecklistsController < ApplicationController
     def show
         checklist = Checklist.find_by(date: params[:date])
         if checklist
-          render json: checklist
+          render json: checklist.as_json(include: { checklist_items: { include: { item: { include: :category } } } })
         else
           render json: { error: 'Checklist not found' }, status: :not_found
         end
