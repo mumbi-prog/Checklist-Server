@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :checklist_items
-  resources :checklists
-  resources :items
-  resources :categories
+  resources :checklists, only [:index, :show, :create]
+  resources :items, only [:index]
+  resources :categories, only [:index]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
