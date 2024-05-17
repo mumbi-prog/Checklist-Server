@@ -72,3 +72,5 @@ group :test do
 end
 
 gem "prawn", "~> 2.5"
+
+gem "rack-cors", "~> 2.0"
