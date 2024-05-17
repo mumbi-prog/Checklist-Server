@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :checklist_items
   resources :checklists
   resources :items
   resources :categories
