@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :checklists, only [:index, :show, :create]
   resources :items, only [:index]
   resources :categories, only [:index]
+  get 'checklists/:date', to: 'checklists#show', as: 'checklist_by_date'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
