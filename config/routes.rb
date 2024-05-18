@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :users
+  # resources :users
+
+  post '/login', to: 'sessions#create'
   resources :checklist_items
   resources :checklists, only: [:index, :show, :create]
   resources :items, only: [:index]
