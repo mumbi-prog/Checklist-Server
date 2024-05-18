@@ -30,22 +30,21 @@ class ChecklistsController < ApplicationController
     end
 
     def create
-        checklist = Checklist.new(checklist_params)
-        if checklist.save
-          items = Item.all
-          items.each do |item|
-            checklist.checklist_items.create(item: item, status: params[:items][item.id.to_s][:status], remark: params[:items][item.id.to_s][:remark])
-          end
-          render json: checklist, include: :checklist_items, status: :created
-        else
-          render json: checklist.errors, status: :unprocessable_entity
+      checklist = Checklist.new(checklist_params)
+      if checklist.save
+        items = Item.all
+        items.each do |item|
+          checklist.checklist_items.create(item: item, status: params[:items][item.id.to_s][:status], remark: params[:items][item.id.to_s][:remark])
         end
+        render json: checklist, include: :checklist_items, status: :created
+      else
+        render json: checklist.errors, status: :unprocessable_entity
+      end
     end
-
+  
     private
-
+  
     def checklist_params
       params.require(:checklist).permit(:date)
     end
-
-end
+  end
