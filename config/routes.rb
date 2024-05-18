@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # resources :users
 
   post '/login', to: 'sessions#create'
+  get '/mysession', to: 'sessions#logged_in'
+  delete '/logout', to: 'sessions#destroy'
   resources :checklist_items
   resources :checklists, only: [:index, :show, :create]
   resources :items, only: [:index]
