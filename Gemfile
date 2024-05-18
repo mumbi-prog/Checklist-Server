@@ -7,7 +7,7 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-# gem 'bcrypt', '~> 3.1', '>= 3.1.20'
+gem 'bcrypt', '~> 3.1', '>= 3.1.20'
 gem 'active_model_serializers', '~> 0.10.14'
 # gem 'pdfkit', '~> 0.8.7.3'
 # gem 'spreadsheet', '~> 1.3', '>= 1.3.1'
