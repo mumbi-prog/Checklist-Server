@@ -113,18 +113,43 @@
 #   port: 5432
 
 # config/database.yml
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: 5
+#   username: mumbi
+#   password: postgres
+#   host: localhost
+#   port: 5432
+
+# development:
+#   <<: *default
+#   database: checklist_app_development
+
+# test:
+#   <<: *default
+#   database: checklist_app_test
+
+# production:
+#   <<: *default
+#   database: checklist_app_production
+#   username: <%= ENV['DATABASE_USERNAME'] %>
+#   password: <%= ENV['DATABASE_PASSWORD'] %>
+#   host: <%= ENV['DATABASE_HOST'] %>
+#   port: <%= ENV['DATABASE_PORT'] %>
+
 default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: mumbi
-  password: postgres
-  host: localhost
-  port: 5432
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
 
 development:
   <<: *default
-  database: checklist_app_development
+  database: <%= ENV['DATABASE_NAME'] %>
 
 test:
   <<: *default
@@ -133,7 +158,3 @@ test:
 production:
   <<: *default
   database: checklist_app_production
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: <%= ENV['DATABASE_HOST'] %>
-  port: <%= ENV['DATABASE_PORT'] %>
